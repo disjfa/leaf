@@ -1,0 +1,3 @@
+disjfa_timetable:
+    resource: '@DisjfaTimetableBundle/Controller/'
+    type:     annotation

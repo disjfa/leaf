@@ -1,0 +1,38 @@
+{% extends "admin.html.twig" %}
+
+{% block content_title %}
+    Blog
+{% endblock %}
+
+{% block main %}
+    <div class="container pt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Blog</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container pb-2">
+        <a href="{{ path('disjfa_blog_blog_create') }}" class="btn btn-primary">Create new blog post</a>
+    </div>
+    <div class="container py-2">
+        <div class="table-responsive">
+            <table class="table">
+                {% for post in blogs %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('disjfa_blog_blog_show', {blogPost: post.id}) }}">
+                                {{ post.title }}
+                            </a>
+                        </td>
+                        <td>
+                            {% for place in workflow_marked_places(post) %}
+                                {{ place }}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

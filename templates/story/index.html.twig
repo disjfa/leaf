@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block main %}
+    <div class="container py-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Stories</li>
+            </ol>
+        </nav>
+
+        <a href="{{ path('disjfa_story_story_create') }}">New story</a>
+        <hr>
+        {% for story in stories %}
+            <div>
+                <a href="{{ path('disjfa_story_story_show', {'story': story.id}) }}">
+                    {{ story.title }}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

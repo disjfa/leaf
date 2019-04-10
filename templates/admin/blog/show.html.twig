@@ -1,0 +1,50 @@
+{% extends 'admin.html.twig' %}
+
+{% block main %}
+    <div class="container pt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('disjfa_blog_blog_index') }}">blog</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ blogPost.title }}</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container bg-light py-2">
+        <div class="d-flex row">
+            <div class="col">
+                <div class="btn disabled">
+                    Current place:
+                    {% for place in workflow_marked_places(blogPost) %}
+                        <strong>{{ place }}</strong>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col text-right">
+                {% for transition in workflow_transitions(blogPost) %}
+                    <a href="{{ path('disjfa_blog_blog_transition', {blogPost: blogPost.id, transition: transition.name}) }}" class="btn btn-outline-primary">
+                        {{ transition.name }}
+                    </a>
+                {% else %}
+                    <div class="btn disabled">
+                        <em>End of the line</em>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="container py-2">
+        <h3>
+            {{ blogPost.title }}
+            <a href="{{ path('disjfa_blog_blog_edit', {blogPost: blogPost.id}) }}" class="btn btn-outline-primary">edit</a>
+        </h3>
+        <p>{{ blogPost.content }}</p>
+        {% if blogPost.imageUrl %}
+            <img src="{{ blogPost.imageUrl }}" alt="{{ blogPost.title }}" class="img-thumbnail">
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block content_title %}
+    {{ blogPost.title }}
+{% endblock %}
+

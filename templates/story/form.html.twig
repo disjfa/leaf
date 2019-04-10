@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="container py-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('disjfa_story_story_index') }}">Stories</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Create</li>
+            </ol>
+        </nav>
+
+        {{ form_start(form) }}
+        {{ form_rest(form) }}
+        <button type="submit">submit</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

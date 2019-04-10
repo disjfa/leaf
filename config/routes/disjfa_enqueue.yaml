@@ -1,0 +1,3 @@
+disjfa_enqueue:
+    resource: '@DisjfaEnqueueBundle/Controller/'
+    type:     annotation

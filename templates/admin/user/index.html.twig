@@ -1,0 +1,52 @@
+{% extends "admin.html.twig" %}
+
+{% trans_default_domain 'admin' %}
+
+{% block page_title %}
+    {{ 'users.index.title' | trans | desc('Users') }} - {{ parent() }}
+{% endblock %}
+
+{% block content_title %}
+    {{ 'users.index.page_title' | trans | desc('Users') }}
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>{{ 'users.table.username' | trans | desc('Username') }}</th>
+                    <th>{{ 'users.table.email' | trans | desc('Email') }}</th>
+                    <th>{{ 'users.table.enabled' | trans | desc('Enabled') }}</th>
+                    <th>{{ 'users.table.last_lgin' | trans  | desc('Last login') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('admin_user_show', {'user': user.id}) }}">
+                                {{ user.username }}
+                            </a>
+                        </td>
+                        <td>
+                            {{ user.email }}
+                        </td>
+                        <td>
+                            {{ user.enabled }}
+                        </td>
+                        <td>
+                            {% if user.lastLogin %}
+                                {{ user.lastLogin | date }}
+                            {% else %}
+                                <i class="fa fa-minus"></i>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
